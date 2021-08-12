@@ -1,5 +1,6 @@
 import * as ghCore from "@actions/core";
 import * as fs from "fs";
+import * as github from "@actions/github";
 import { Inputs, Outputs } from "./generated/inputs-outputs";
 import * as utils from "./utils";
 import Analyse from "./analyse";
@@ -14,6 +15,17 @@ async function run(): Promise<void> {
     const analysisStartTime = new Date().toISOString();
     ghCore.debug(`Analysis started at ${analysisStartTime}`);
 
+    ghCore.info(JSON.stringify(github.context.payload.pull_request, undefined, 4));
+    /**
+     * check in github.event.pull_request --> types to consider labelled and edited
+     * if pull request, check for the existing lables if it has label "crda-scan-approved"
+     * proceed with scan
+     * else put label "crda-scan-pending" and finish the action.
+     * find the pr number
+     * checkout that pr, find manifestfile and replace it with the existing manifest file
+     * do crda analysis now.
+     * If pull request is edited remove all the other lables and add "crda-scan-pending"
+    */
     const manifestFilePath = ghCore.getInput(Inputs.MANIFEST_FILE_PATH);
     const snykToken = ghCore.getInput(Inputs.SNYK_TOKEN);
     const crdaKey = ghCore.getInput(Inputs.CRDA_KEY);
@@ -89,7 +101,7 @@ async function run(): Promise<void> {
     }
 
     if (uploadSarif) {
-        ghCore.info(`⬆️ Uploading sarif file to Github...`);
+        ghCore.info(`⬆️ Uploading sarif file to GitHub...`);
         // const splittedPath = manifestFilePath.split("/");
         // const index = manifestFilePath.lastIndexOf("/");
         // const checkoutPath = manifestFilePath.slice(0, index);
