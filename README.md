@@ -148,3 +148,5 @@ on:
 ```
 
 This file introduces a vulnerability *Arbitrary Code Execution* with *critical* severity.<br/> Vulnerability present at **pyyaml** <br/> **Version**: `3.13` <br/> **Recommended Version**: `5.4.1` <br/> **Latest Version**: `5.4.1`
+
+This file introduces a vulnerability Use of hardcoded DB password with critical severity <br/>Vulnerability present at django <br/>**Version**: `1.9.6`<br/>**Recommended Version**: 3.2.7<br/>**Latest Version**

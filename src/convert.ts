@@ -210,7 +210,7 @@ function fetchResults(
         let markdownMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} `
         + `with ${publiclyAvailableVulnerability.severity} severity <br/>`
         + `Vulnerability present at ${dependencyName} <br/>`
-        + `**Version**: \`${dependencyVersion}\`<br/>`;
+        + `**Version**: ${dependencyVersion} <br/>`;
 
         if (recommendedVersion) {
             markdownMessage = `${markdownMessage}**Recommended Version**: ${recommendedVersion}<br/>`;
