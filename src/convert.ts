@@ -208,15 +208,15 @@ function fetchResults(
 
         // TODO: Add message in markdown format
         let markdownMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} `
-        + `with ${publiclyAvailableVulnerability.severity} severity <br/>`
-        + `Vulnerability present at ${dependencyName} <br/>`
-        + `**Version**: ${dependencyVersion} <br/>`;
+        + `with ${publiclyAvailableVulnerability.severity} severity `
+        + `Vulnerability present at ${dependencyName} `
+        + `**Version**: ${dependencyVersion} `;
 
         if (recommendedVersion) {
-            markdownMessage = `${markdownMessage}**Recommended Version**: ${recommendedVersion}<br/>`;
+            markdownMessage = `${markdownMessage}**Recommended Version**: ${recommendedVersion}`;
         }
         if (latestVersion) {
-            markdownMessage = `${markdownMessage}**Latest Version**: ${latestVersion}<br/>`;
+            markdownMessage = `${markdownMessage}**Latest Version**: ${latestVersion}`;
         }
         const message: sarif.Message = {
             markdown: markdownMessage,
