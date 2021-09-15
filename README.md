@@ -146,3 +146,5 @@ on:
     # These types are all required for CRDA to scan pull requests correctly and securely.
     types: [ opened, synchronize, reopened, labeled, edited ]
 ```
+
+This file introduces a vulnerability *Arbitrary Code Execution* with *critical* severity.<br/> Vulnerability present at **pyyaml** <br/> **Version**: `3.13` <br/> **Recommended Version**: `5.4.1` <br/> **Latest Version**: `5.4.1`

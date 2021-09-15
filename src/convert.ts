@@ -201,26 +201,25 @@ function fetchResults(
     const ruleIds: string[] = [];
     publiclyAvailableVulnerabilities.forEach((publiclyAvailableVulnerability) => {
         const ruleId = publiclyAvailableVulnerability.id;
-        let textMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} with `
-            + `${publiclyAvailableVulnerability.severity} severity.\n`
-            + `Vulnerability present at ${dependencyName}\n`
-            + `Version: ${dependencyVersion}\n`;
+        // let textMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} with `
+        //     + `${publiclyAvailableVulnerability.severity} severity.\n`
+        //     + `Vulnerability present at ${dependencyName}\n`
+        //     + `Version: ${dependencyVersion}\n`;
 
         // TODO: Add message in markdown format
-
-        // let markdownMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} with`
-        // + `${publiclyAvailableVulnerability.severity} severity\n`
-        // + `Vulnerability present at ${dependencyName}\n`
-        // + `*Version*: ${dependencyVersion}\n`;
+        let markdownMessage = `This file introduces a vulnerability ${publiclyAvailableVulnerability.title} `
+        + `with ${publiclyAvailableVulnerability.severity} severity <br/>`
+        + `Vulnerability present at ${dependencyName} <br/>`
+        + `**Version**: \`${dependencyVersion}\`<br/>`;
 
         if (recommendedVersion) {
-            textMessage = `${textMessage}Recommended Version: ${recommendedVersion}\n`;
+            markdownMessage = `${markdownMessage}**Recommended Version**: ${recommendedVersion}<br/>`;
         }
         if (latestVersion) {
-            textMessage = `${textMessage}Latest Version: ${latestVersion}`;
+            markdownMessage = `${markdownMessage}**Latest Version**: ${latestVersion}<br/>`;
         }
         const message: sarif.Message = {
-            text: textMessage,
+            markdown: markdownMessage,
         };
         const artifactLocation: sarif.ArtifactLocation = {
             uri: manifestFile,
