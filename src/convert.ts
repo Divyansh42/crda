@@ -219,6 +219,7 @@ function fetchResults(
             markdownMessage = `${markdownMessage}**Latest Version**: ${latestVersion}`;
         }
         const message: sarif.Message = {
+            text: "",
             markdown: markdownMessage,
         };
         const artifactLocation: sarif.ArtifactLocation = {
